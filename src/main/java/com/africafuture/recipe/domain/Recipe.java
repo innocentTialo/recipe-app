@@ -1,10 +1,13 @@
 package com.africafuture.recipe.domain;
 
+import com.africafuture.recipe.enums.Difficulty;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -32,8 +35,8 @@ public class Recipe extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private Note note;
 
-//    todo: add
-//    private Difficulty difficulty;
+    @Enumerated(EnumType.STRING)
+    private Difficulty difficulty;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
