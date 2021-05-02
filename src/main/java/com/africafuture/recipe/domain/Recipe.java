@@ -21,7 +21,12 @@ import java.util.Set;
 @Setter
 public class Recipe extends BaseEntity {
 
+    private String name;
+
+    @Lob
     private String description;
+
+    private String shortDescription;
 
     private Integer prepTime;
 
@@ -42,7 +47,7 @@ public class Recipe extends BaseEntity {
     private Difficulty difficulty;
 
     @Lob
-    private Byte[] image;
+    private byte[] image;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
