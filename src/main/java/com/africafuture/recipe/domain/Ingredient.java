@@ -25,9 +25,20 @@ public class Ingredient extends BaseEntity {
     @ManyToOne
     private Recipe recipe;
 
-    public Ingredient(BigDecimal amount, UnitOfMeasure unitOfMeasure, String description) {
+    public Ingredient(BigDecimal amount, UnitOfMeasure unitOfMeasure, String description, Recipe recipe) {
         this.amount = amount;
         this.unitOfMeasure = unitOfMeasure;
         this.description = description;
+        this.recipe = recipe;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "description='" + description + '\'' +
+                ", amount=" + amount +
+                ", unitOfMeasure=" + unitOfMeasure.getName() +
+                ", recipe=" + recipe.getId() +
+                '}';
     }
 }

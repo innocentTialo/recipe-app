@@ -16,4 +16,11 @@ public class Category extends BaseEntity {
 
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes;
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name +
+                "}";
+    }
 }

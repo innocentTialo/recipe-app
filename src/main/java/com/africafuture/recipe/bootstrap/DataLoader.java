@@ -7,11 +7,9 @@ import com.africafuture.recipe.enums.Difficulty;
 import com.africafuture.recipe.repository.CategoryRepository;
 import com.africafuture.recipe.repository.RecipeRepository;
 import com.africafuture.recipe.repository.UnitOfMeasureRepository;
-import com.africafuture.recipe.utils.ImagesUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Set;
 
@@ -69,36 +67,51 @@ public class DataLoader implements CommandLineRunner {
                 "(If you can't find ancho chili powder, you replace the ancho chili, the oregano, and the cumin with 2 1/2 tablespoons regular chili powder, though the flavor won't be quite the same.)",
                 spicyGrilledChickenTacos));
         spicyGrilledChickenTacos.setIngredients(Set.of(
-                new Ingredient(BigDecimal.valueOf(2), unitOfMeasureRepository.findByName("Tablespoon").get(), "ancho chili powder"),
-                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Teaspoon").get(), "dried oregano"),
-                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Teaspoon").get(), "dried cumin"),
-                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Teaspoon").get(), "sugar"),
-                new Ingredient(HALF, unitOfMeasureRepository.findByName("Tablespoon").get(), "salt"),
-                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Clove").get(), "garlic, finely chopped"),
-                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Tablespoon").get(), "finely grated orange zest"),
-                new Ingredient(BigDecimal.valueOf(3), unitOfMeasureRepository.findByName("Tablespoon").get(), "fresh-squeezed orange juice"),
-                new Ingredient(BigDecimal.valueOf(2), unitOfMeasureRepository.findByName("Tablespoon").get(), "olive oil"),
-                new Ingredient(BigDecimal.valueOf(6), unitOfMeasureRepository.findByName("None").get(), "skinless, boneless chicken thighs"),
-                new Ingredient(BigDecimal.valueOf(8), unitOfMeasureRepository.findByName("None").get(), "small corn tortillas"),
-                new Ingredient(BigDecimal.valueOf(3), unitOfMeasureRepository.findByName("Ounce").get(), " packed baby arugula "),
-                new Ingredient(BigDecimal.valueOf(2), unitOfMeasureRepository.findByName("None").get(), "medium ripe avocados, sliced"),
-                new Ingredient(BigDecimal.valueOf(4), unitOfMeasureRepository.findByName("None").get(), "radishes, thinly sliced"),
-                new Ingredient(HALF, unitOfMeasureRepository.findByName("None").get(), "cherry tomatoes, halved"),
-                new Ingredient(QUARTER, unitOfMeasureRepository.findByName("None").get(), "red onion, thinly sliced"),
-                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("None").get(), "Roughly chopped cilantro"),
-                new Ingredient(HALF, unitOfMeasureRepository.findByName("Cup").get(), "sour cream thinned"),
-                new Ingredient(QUARTER, unitOfMeasureRepository.findByName("Cup").get(), "milk"),
-                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("None").get(), "lime, cut into wedges")
+                new Ingredient(BigDecimal.valueOf(2), unitOfMeasureRepository.findByName("Tablespoon").get(), "ancho chili powder", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Teaspoon").get(), "dried oregano", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Teaspoon").get(), "dried cumin", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Teaspoon").get(), "sugar", spicyGrilledChickenTacos),
+                new Ingredient(HALF, unitOfMeasureRepository.findByName("Tablespoon").get(), "salt", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Clove").get(), "garlic, finely chopped", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Tablespoon").get(), "finely grated orange zest", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.valueOf(3), unitOfMeasureRepository.findByName("Tablespoon").get(), "fresh-squeezed orange juice", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.valueOf(2), unitOfMeasureRepository.findByName("Tablespoon").get(), "olive oil", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.valueOf(6), unitOfMeasureRepository.findByName("None").get(), "skinless, boneless chicken thighs", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.valueOf(8), unitOfMeasureRepository.findByName("None").get(), "small corn tortillas", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.valueOf(3), unitOfMeasureRepository.findByName("Ounce").get(), " packed baby arugula ", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.valueOf(2), unitOfMeasureRepository.findByName("None").get(), "medium ripe avocados, sliced", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.valueOf(4), unitOfMeasureRepository.findByName("None").get(), "radishes, thinly sliced", spicyGrilledChickenTacos),
+                new Ingredient(HALF, unitOfMeasureRepository.findByName("None").get(), "cherry tomatoes, halved", spicyGrilledChickenTacos),
+                new Ingredient(QUARTER, unitOfMeasureRepository.findByName("None").get(), "red onion, thinly sliced", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("None").get(), "Roughly chopped cilantro", spicyGrilledChickenTacos),
+                new Ingredient(HALF, unitOfMeasureRepository.findByName("Cup").get(), "sour cream thinned", spicyGrilledChickenTacos),
+                new Ingredient(QUARTER, unitOfMeasureRepository.findByName("Cup").get(), "milk", spicyGrilledChickenTacos),
+                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("None").get(), "lime, cut into wedges", spicyGrilledChickenTacos)
         ));
         spicyGrilledChickenTacos.setCategories(Set.of(
                 categoryRepository.findByName("Mexican").get(),
                 categoryRepository.findByName("Fast Food").get()
         ));
-        try {
+        spicyGrilledChickenTacos.setDirections("1. Prepare a gas or charcoal grill for medium-high, direct heat\n" +
+                "2. Make the marinade and coat the chicken:\n" +
+                "In a large bowl, stir together the chili powder, oregano, cumin, sugar, salt, garlic and orange zest. Stir in the orange juice and olive oil to make a loose paste. Add the chicken to the bowl and toss to coat all over.\n" +
+                "\n" +
+                "Set aside to marinate while the grill heats and you prepare the rest of the toppings.\n" +
+                "3. Grill the chicken:\n" +
+                "Grill the chicken for 3 to 4 minutes per side, or until a thermometer inserted into the thickest part of the meat registers 165F. Transfer to a plate and rest for 5 minutes.\n" +
+                "\n" +
+                "4. Warm the tortillas:\n" +
+                "Place each tortilla on the grill or on a hot, dry skillet over medium-high heat. As soon as you see pockets of the air start to puff up in the tortilla, turn it with tongs and heat for a few seconds on the other side.\n" +
+                "\n" +
+                "Wrap warmed tortillas in a tea towel to keep them warm until serving.\n" +
+                "\n" +
+                "5. Assemble the tacos:\n" +
+                "Slice the chicken into strips. On each tortilla, place a small handful of arugula. Top with chicken slices, sliced avocado, radishes, tomatoes, and onion slices. Drizzle with the thinned sour cream. Serve with lime wedges.");
+        /*try {
             spicyGrilledChickenTacos.setImage(ImagesUtils.getBytesOf("classpath:images/spicyGrilledChickenTacos", "png"));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         recipeRepository.save(spicyGrilledChickenTacos);
 
 
@@ -159,26 +172,42 @@ public class DataLoader implements CommandLineRunner {
                 "Wash your hands thoroughly after handling and do not touch your eyes or the area near your eyes with your hands for several hours.",
                 guacamole));
         guacamole.setIngredients(Set.of(
-                new Ingredient(BigDecimal.valueOf(2), unitOfMeasureRepository.findByName("None").get(), "ripe avocados"),
-                new Ingredient(QUARTER, unitOfMeasureRepository.findByName("Teaspoon").get(), "salt, more to taste"),
-                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Tablespoon").get(), "fresh lime juice or lemon juice"),
-                new Ingredient(QUARTER, unitOfMeasureRepository.findByName("Cup").get(), "minced red onion or thinly sliced green onion"),
-                new Ingredient(BigDecimal.valueOf(2), unitOfMeasureRepository.findByName("None").get(), "serrano chiles, stems and seeds removed, minced"),
-                new Ingredient(TWO, unitOfMeasureRepository.findByName("Tablespoon").get(), "cilantro (leaves and tender stems), finely chopped"),
-                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Dash").get(), "freshly grated black pepper"),
-                new Ingredient(HALF, unitOfMeasureRepository.findByName("None").get(), "ripe tomato, seeds and pulp removed, chopped"),
-                new Ingredient(BigDecimal.valueOf(6), unitOfMeasureRepository.findByName("None").get(), "Red radishes or jicama, to garnish"),
-                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("None").get(), "Tortilla chips, to serve")
+                new Ingredient(BigDecimal.valueOf(2), unitOfMeasureRepository.findByName("None").get(), "ripe avocados", guacamole),
+                new Ingredient(QUARTER, unitOfMeasureRepository.findByName("Teaspoon").get(), "salt, more to taste", guacamole),
+                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Tablespoon").get(), "fresh lime juice or lemon juice", guacamole),
+                new Ingredient(QUARTER, unitOfMeasureRepository.findByName("Cup").get(), "minced red onion or thinly sliced green onion", guacamole),
+                new Ingredient(BigDecimal.valueOf(2), unitOfMeasureRepository.findByName("None").get(), "serrano chiles, stems and seeds removed, minced", guacamole),
+                new Ingredient(TWO, unitOfMeasureRepository.findByName("Tablespoon").get(), "cilantro (leaves and tender stems), finely chopped", guacamole),
+                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("Dash").get(), "freshly grated black pepper", guacamole),
+                new Ingredient(HALF, unitOfMeasureRepository.findByName("None").get(), "ripe tomato, seeds and pulp removed, chopped", guacamole),
+                new Ingredient(BigDecimal.valueOf(6), unitOfMeasureRepository.findByName("None").get(), "Red radishes or jicama, to garnish", guacamole),
+                new Ingredient(BigDecimal.ONE, unitOfMeasureRepository.findByName("None").get(), "Tortilla chips, to serve", guacamole)
         ));
         guacamole.setCategories(Set.of(
                 categoryRepository.findByName("Mexican").get(),
                 categoryRepository.findByName("Fast Food").get()
         ));
-        try {
+        guacamole.setDirections("1. Cut the avocado, remove flesh:\n" +
+                "Cut the avocados in half. Remove the pit. " +
+                "Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
+                "2. Mash with a fork:\n" +
+                "Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)\n" +
+                "3. Add salt, lime juice, and the rest:\n" +
+                "Sprinkle with salt and lime (or lemon) juice. The acid in the lime juice will provide some balance to the richness of the avocado and will help delay the avocados from turning brown.\n" +
+                "\n" +
+                "Add the chopped onion, cilantro, black pepper, and chiles. Chili peppers vary individually in their hotness. So, start with a half of one chili pepper and add to the guacamole to your desired degree of hotness.\n" +
+                "\n" +
+                "Remember that much of this is done to taste because of the variability in the fresh ingredients. Start with this recipe and adjust to your taste.\n" +
+                "\n" +
+                "Chilling tomatoes hurts their flavor, so if you want to add chopped tomato to your guacamole, add it just before serving.\n" +
+                "\n" +
+                "4. Serve:\n" +
+                "Serve immediately, or if making a few hours ahead, place plastic wrap on the surface of the guacamole and press down to cover it and to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.) Refrigerate until ready to serve.");
+        /*try {
             guacamole.setImage(ImagesUtils.getBytesOf("classpath:images/guacamole", "png"));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         recipeRepository.save(guacamole);
     }
 }

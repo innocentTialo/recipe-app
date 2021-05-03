@@ -14,6 +14,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.Arrays;
 import java.util.Set;
 
 @Entity
@@ -38,6 +39,7 @@ public class Recipe extends BaseEntity {
 
     private String url;
 
+    @Lob
     private String directions;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -59,4 +61,24 @@ public class Recipe extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<Category> categories;
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", prepTime=" + prepTime +
+                ", cookTime=" + cookTime +
+                ", servings=" + servings +
+                ", source='" + source + '\'' +
+                ", url='" + url + '\'' +
+                ", directions='" + directions + '\'' +
+                ", note=" + note +
+                ", difficulty=" + difficulty +
+                ", image=" + Arrays.toString(image) +
+                ", ingredients=" + ingredients +
+                ", categories=" + categories +
+                '}';
+    }
 }
