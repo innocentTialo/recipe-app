@@ -7,17 +7,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UnitOfMeasureTest {
 
-    public static final String INNOCENT_TIALO = "Innocent TIALO";
+    public static final String KILOMETERS = "Kilometers";
     UnitOfMeasure unitOfMeasure;
 
     @BeforeEach
     void setUp() {
         unitOfMeasure = new UnitOfMeasure();
-        unitOfMeasure.setName(INNOCENT_TIALO);
+        unitOfMeasure.setName(KILOMETERS);
     }
 
     @Test
     void getName() {
-        assertEquals(INNOCENT_TIALO, unitOfMeasure.getName());
+        assertEquals(KILOMETERS, unitOfMeasure.getName());
     }
 }
