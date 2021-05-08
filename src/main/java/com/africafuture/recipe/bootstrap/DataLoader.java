@@ -37,6 +37,7 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadData() {
         Recipe spicyGrilledChickenTacos = new Recipe();
+        spicyGrilledChickenTacos.setName("Spicy Grilled Chicken Tacos");
         spicyGrilledChickenTacos.setPrepTime(20);
         spicyGrilledChickenTacos.setCookTime(15);
         spicyGrilledChickenTacos.setServings(6);
