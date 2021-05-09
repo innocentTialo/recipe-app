@@ -1,14 +1,17 @@
 package com.africafuture.recipe.service;
 
+import com.africafuture.recipe.service.dto.EntityDto;
+import com.africafuture.recipe.service.dto.EntitySummaryDto;
+
 import java.util.Set;
 
-public interface CrudService<T, ID> {
+public interface CrudService<T, D extends EntityDto, S extends EntitySummaryDto, ID> {
 
-    Set<T> findAll();
+    Set<S> findAll();
 
-    T findById(ID id);
+    S findById(ID id);
 
-    T save(T object);
+    S save(T object);
 
     void delete(T object);
 

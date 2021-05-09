@@ -1,6 +1,6 @@
 package com.africafuture.recipe.controller;
 
-import com.africafuture.recipe.domain.Recipe;
+import com.africafuture.recipe.service.dto.RecipeSummaryDto;
 import com.africafuture.recipe.service.impl.RecipeServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,7 +52,7 @@ class IndexControllerTest {
     @Test
     void getIndex() {
         // Given
-        Set<Recipe> recipes = Set.of(new Recipe());
+        Set<RecipeSummaryDto> recipes = Set.of(new RecipeSummaryDto());
         ArgumentCaptor<Set> argumentCaptor = ArgumentCaptor.forClass(Set.class);
         when(recipeService.findAll()).thenReturn(recipes);
 

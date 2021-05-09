@@ -2,30 +2,33 @@ package com.africafuture.recipe.service;
 
 
 import com.africafuture.recipe.domain.BaseEntity;
+import com.africafuture.recipe.service.dto.EntityDto;
+import com.africafuture.recipe.service.dto.EntitySummaryDto;
+import com.africafuture.recipe.service.mapper.EntityMapper;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class AbstractService<T extends BaseEntity, ID extends Long> implements CrudService<T, ID> {
+public abstract class AbstractService<T extends BaseEntity, D extends EntityDto, S extends EntitySummaryDto, ID extends Long> implements CrudService<T, D, S, ID> {
     @Override
-    public Set<T> findAll() {
+    public Set<S> findAll() {
         Iterable<T> all = getRepository().findAll();
-        Set<T> response = new HashSet<>();
-        all.iterator().forEachRemaining(response::add);
+        Set<S> response = new HashSet<>();
+        all.iterator().forEachRemaining(t -> response.add(getEntityMapper().toSummaryDto(t)));
         return response;
     }
 
     @Override
-    public T findById(ID id) {
-        return getRepository().findById(id).orElseThrow(EntityNotFoundException::new);
+    public S findById(ID id) {
+        return getEntityMapper().toSummaryDto(getRepository().findById(id).orElseThrow(EntityNotFoundException::new));
     }
 
     @Override
-    public T save(T object) {
+    public S save(T object) {
         onCreateBeforeSave(object);
-        return getRepository().save(object);
+        return getEntityMapper().toSummaryDto(getRepository().save(object));
     }
 
     @Override
@@ -41,4 +44,6 @@ public abstract class AbstractService<T extends BaseEntity, ID extends Long> imp
     protected void onCreateBeforeSave(T t) {}
 
     protected abstract CrudRepository<T, ID> getRepository();
+
+    protected abstract EntityMapper<T, D, S> getEntityMapper();
 }
