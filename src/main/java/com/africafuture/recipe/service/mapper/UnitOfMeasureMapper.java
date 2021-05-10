@@ -4,6 +4,7 @@ import com.africafuture.recipe.domain.UnitOfMeasure;
 import com.africafuture.recipe.service.dto.UnitOfMeasureDto;
 import com.africafuture.recipe.service.dto.UnitOfMeasureSummaryDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,7 @@ public abstract class UnitOfMeasureMapper implements EntityMapper<UnitOfMeasure,
     @Component
     class UnitOfMeasureFactory {
 
+        @ObjectFactory
         public UnitOfMeasure fromDto(UnitOfMeasureDto dto) {
             if (dto.getId() != null) {
                 return entityFinder.findUnitOfMeasureById(dto.getId());

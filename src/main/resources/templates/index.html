@@ -20,12 +20,26 @@
             th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
+<!-- /*@thymesVar id="recipe" type="com.africafuture.recipe.domain.Recipe"*/-->
+<!-- /*@thymesVar id="recipes" type="java.util.Set<africafuture.recipe.domain.Recipe>"*/-->
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h1 class="panel-title">My Recipes</h1>
+                    <h3 class="panel-title">
+                        My Recipes
+
+                        <div class="pull-right">
+                            <button class="btn btn-success btn-xs">
+                                <a href="#" th:href="@{'/recipe/creation-form'}" style="color: white !important;">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                    New Recipe
+                                </a>
+                            </button>
+                        </div>
+                    </h3>
+
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
@@ -33,25 +47,28 @@
                             <thead class="thead-inverse">
                             <tr>
                                 <th>ID</th>
-                                <th>Description</th>
+                                <th>Name</th>
                                 <th>View</th>
+                                <th>Update</th>
                             </tr>
                             </thead>
                             <tr th:remove="all">
                                 <td th:text="${recipe.id}">ID</td>
-                                <td th:text="${recipe.description}">Description</td>
+                                <td th:text="${recipe.name}">Description</td>
                                 <td><a href="#">View</a></td>
+                                <td><a href="#">Update</a></td>
                             </tr>
                             <tr th:remove="all">
                                 <td th:text="${recipe.id}">12333</td>
-                                <td th:text="${recipe.description}">Tasty Goodnees 2</td>
+                                <td th:text="${recipe.name}">Tasty Goodnees 2</td>
                                 <td><a href="#">View</a></td>
+                                <td><a href="#">Update</a></td>
                             </tr>
                             <tr th:each="recipe: ${recipes}">
-                                <!-- /*@thymesVar id="recipe" type="com.africafuture.recipe.domain.Recipe"*/-->
                                 <td th:text="${recipe.id}">ID</td>
-                                <td th:text="${recipe.shortDescription}">Description</td>
+                                <td th:text="${recipe.name}">Name</td>
                                 <td><a href="#" th:href="@{'/recipe/show/' + ${recipe.id}}">View</a></td>
+                                <td><a href="#" th:href="@{'/recipe/update-form/' + ${recipe.id}}">Update</a></td>
                             </tr>
                         </table>
                     </div>
@@ -60,12 +77,5 @@
         </div>
     </div>
 </div>
-<!--<h1 th:text="'Recipe project is a good project to work ons sdfsdf sdfsdffd123'"></h1>
-<ul th:each="recipe: ${recipes}">
-    <li th:text="${recipe.id}">1</li>
-    <li th:text="${recipe.description}">Innocent</li>
-    <li th:text="${recipe.shortDescription}">TIALO</li>
-    <li th:text="${recipe.directions}">TIALO</li>
-</ul>-->
 </body>
 </html>

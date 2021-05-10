@@ -4,6 +4,7 @@ import com.africafuture.recipe.domain.Ingredient;
 import com.africafuture.recipe.service.dto.IngredientDto;
 import com.africafuture.recipe.service.dto.IngredientSummaryDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,7 @@ public abstract class IngredientMapper implements EntityMapper<Ingredient, Ingre
     @Component
     class IngredientFactory {
 
+        @ObjectFactory
         public Ingredient fromDto(IngredientDto dto) {
             if (dto.getId() != null) {
                 return entityFinder.findIngredientById(dto.getId());
