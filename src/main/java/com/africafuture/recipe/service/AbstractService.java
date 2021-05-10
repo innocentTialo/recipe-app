@@ -33,8 +33,12 @@ public abstract class AbstractService<T extends BaseEntity, D extends EntityDto,
     }
 
     @Override
-    public void delete(T object) {
-        getRepository().delete(object);
+    public void delete(ID id) {
+        T t = getRepository().findById(id).orElse(null);
+        if (t == null){
+            return;
+        }
+        getRepository().delete(t);
     }
 
     @Override

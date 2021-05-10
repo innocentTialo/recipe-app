@@ -79,8 +79,17 @@ class RecipeControllerTest {
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("id", "")
                         .param("name", "some name")
-                )
+        )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:show/" + RECIPE_ID));
+    }
+
+    @Test
+    void deleteRecipe() throws Exception {
+        mockMvc.perform(get("/recipe/delete/" + RECIPE_ID))
+        .andExpect(status().is3xxRedirection())
+        .andExpect(view().name("redirect:/"));
+
+        verify(recipeService, times(1)).delete(RECIPE_ID);
     }
 }

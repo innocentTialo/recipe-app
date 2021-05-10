@@ -50,6 +50,7 @@
                                 <th>Name</th>
                                 <th>View</th>
                                 <th>Update</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tr th:remove="all">
@@ -57,18 +58,28 @@
                                 <td th:text="${recipe.name}">Description</td>
                                 <td><a href="#">View</a></td>
                                 <td><a href="#">Update</a></td>
+                                <td><a href="#">Delete</a></td>
                             </tr>
                             <tr th:remove="all">
                                 <td th:text="${recipe.id}">12333</td>
                                 <td th:text="${recipe.name}">Tasty Goodnees 2</td>
                                 <td><a href="#">View</a></td>
                                 <td><a href="#">Update</a></td>
+                                <td><a href="#">Delete</a></td>
                             </tr>
                             <tr th:each="recipe: ${recipes}">
                                 <td th:text="${recipe.id}">ID</td>
                                 <td th:text="${recipe.name}">Name</td>
                                 <td><a href="#" th:href="@{'/recipe/show/' + ${recipe.id}}">View</a></td>
                                 <td><a href="#" th:href="@{'/recipe/update-form/' + ${recipe.id}}">Update</a></td>
+                                <td>
+                                    <button class="btn btn-danger btn-xs">
+                                        <a href="#" th:href="@{'/recipe/delete/' + ${recipe.id}}" style="color: white">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                            Delete
+                                        </a>
+                                    </button>
+                                </td>
                             </tr>
                         </table>
                     </div>

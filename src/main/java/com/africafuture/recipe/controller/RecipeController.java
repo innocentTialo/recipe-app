@@ -5,6 +5,7 @@ import com.africafuture.recipe.service.dto.RecipeSummaryDto;
 import com.africafuture.recipe.service.impl.RecipeServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
+    @GetMapping
     @RequestMapping(value = {"/show/{recipeId}"})
     public String getById(Model model, @PathVariable Long recipeId) {
 
@@ -28,6 +30,7 @@ public class RecipeController {
         return "recipe/details";
     }
 
+    @GetMapping
     @RequestMapping(value = {"/creation-form/", "/creation-form"})
     public String recipeForm(Model model) {
 
@@ -36,6 +39,7 @@ public class RecipeController {
         return "recipe/recipe-form";
     }
 
+    @GetMapping
     @RequestMapping(value = {"/update-form/{id}"})
     public String recipeForm(Model model, @PathVariable Long id) {
 
@@ -49,5 +53,13 @@ public class RecipeController {
         RecipeSummaryDto savedRecipe = recipeService.save(recipeDto);
 
         return "redirect:show/" + savedRecipe.getId();
+    }
+
+    @GetMapping
+    @RequestMapping("/delete/{recipeId}")
+    public String delete(@PathVariable Long recipeId) {
+        recipeService.delete(recipeId);
+
+        return "redirect:/";
     }
 }

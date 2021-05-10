@@ -13,7 +13,7 @@ public interface CrudService<T, D extends EntityDto, S extends EntitySummaryDto,
 
     S save(D dto);
 
-    void delete(T object);
+    void delete(ID id);
 
     void deleteById(ID id);
 
