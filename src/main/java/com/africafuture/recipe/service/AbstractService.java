@@ -26,9 +26,10 @@ public abstract class AbstractService<T extends BaseEntity, D extends EntityDto,
     }
 
     @Override
-    public S save(T object) {
-        onCreateBeforeSave(object);
-        return getEntityMapper().toSummaryDto(getRepository().save(object));
+    public S save(D dto) {
+        T entity = getEntityMapper().toEntity(dto);
+        onCreateBeforeSave(dto, entity);
+        return getEntityMapper().toSummaryDto(getRepository().save(entity));
     }
 
     @Override
@@ -41,7 +42,7 @@ public abstract class AbstractService<T extends BaseEntity, D extends EntityDto,
         getRepository().deleteById(id);
     }
 
-    protected void onCreateBeforeSave(T t) {}
+    protected void onCreateBeforeSave(D dto, T entity) {}
 
     protected abstract CrudRepository<T, ID> getRepository();
 
