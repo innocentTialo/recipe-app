@@ -1,7 +1,5 @@
 package com.africafuture.recipe.service.dto;
 
-import com.africafuture.recipe.domain.Category;
-import com.africafuture.recipe.domain.Ingredient;
 import com.africafuture.recipe.domain.Note;
 import com.africafuture.recipe.enums.Difficulty;
 import lombok.Getter;
@@ -39,7 +37,7 @@ public class RecipeSummaryDto extends EntitySummaryDto {
 
     private byte[] image;
 
-    private Set<Ingredient> ingredients;
+    private Set<IngredientSummaryDto> ingredients;
 
-    private Set<Category> categories;
+    private Set<CategorySummaryDto> categories;
 }

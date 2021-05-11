@@ -81,14 +81,28 @@
                                 <h5>URL:</h5>
                             </div>
                             <div class="col-md-3">
-                                <a style="overflow: scroll" th:href="${recipe.url}" th:text="${recipe.url}" target="_blank">http://www.example.com</a>
+                                <a style="overflow: scroll" target="_blank" th:href="${recipe.url}"
+                                   th:text="${recipe.url}">http://www.example.com</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h1 class="panel-title">Ingredients</h1>
+                        <h1 class="panel-title">
+                            Ingredients
+
+
+                            <div class="pull-right">
+                                <button class="btn btn-success btn-xs">
+                                    <a href="#" style="color: white;"
+                                       th:href="@{'/ingredient/list/' + ${recipe.id}}">
+                                        <span class="glyphicon glyphicon-list"></span>
+                                        More
+                                    </a>
+                                </button>
+                            </div>
+                        </h1>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -109,7 +123,8 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <p  th:text="${recipe.directions}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                <p th:text="${recipe.directions}">Lorem ipsum dolor sit amet, consectetuer adipiscing
+                                    elit. Aenean commodo ligula eget
                                     dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
                                     nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
                                     quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
@@ -133,7 +148,8 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <p  th:text="${recipe.note.recipeNote}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                <p th:text="${recipe.note.recipeNote}">Lorem ipsum dolor sit amet, consectetuer
+                                    adipiscing elit. Aenean commodo ligula eget
                                     dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
                                     nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
                                     quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet

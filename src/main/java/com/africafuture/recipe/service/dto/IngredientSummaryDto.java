@@ -1,7 +1,5 @@
 package com.africafuture.recipe.service.dto;
 
-import com.africafuture.recipe.domain.Recipe;
-import com.africafuture.recipe.domain.UnitOfMeasure;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,8 +15,8 @@ public class IngredientSummaryDto extends EntitySummaryDto {
 
     private BigDecimal amount;
 
-    private UnitOfMeasure unitOfMeasure;
+    private UnitOfMeasureSummaryDto unitOfMeasure;
 
-    private Recipe recipe;
+    private Long recipeId;
 
 }
