@@ -11,7 +11,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class AbstractService<T extends BaseEntity, D extends EntityDto, S extends EntitySummaryDto, ID extends Long> implements CrudService<T, D, S, ID> {
+public abstract class AbstractService<T extends BaseEntity, D extends EntityDto, S extends EntitySummaryDto> implements CrudService<T, D, S, Long> {
     @Override
     public Set<S> findAll() {
         Iterable<T> all = getRepository().findAll();
@@ -21,7 +21,7 @@ public abstract class AbstractService<T extends BaseEntity, D extends EntityDto,
     }
 
     @Override
-    public S findById(ID id) {
+    public S findById(Long id) {
         return getEntityMapper().toSummaryDto(getRepository().findById(id).orElseThrow(EntityNotFoundException::new));
     }
 
@@ -33,7 +33,7 @@ public abstract class AbstractService<T extends BaseEntity, D extends EntityDto,
     }
 
     @Override
-    public void delete(ID id) {
+    public void delete(Long id) {
         T t = getRepository().findById(id).orElse(null);
         if (t == null){
             return;
@@ -42,13 +42,13 @@ public abstract class AbstractService<T extends BaseEntity, D extends EntityDto,
     }
 
     @Override
-    public void deleteById(ID id) {
+    public void deleteById(Long id) {
         getRepository().deleteById(id);
     }
 
     protected void onCreateBeforeSave(D dto, T entity) {}
 
-    protected abstract CrudRepository<T, ID> getRepository();
+    protected abstract CrudRepository<T, Long> getRepository();
 
     protected abstract EntityMapper<T, D, S> getEntityMapper();
 }

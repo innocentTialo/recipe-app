@@ -1,19 +1,18 @@
 package com.africafuture.recipe.controller;
 
+import com.africafuture.recipe.domain.Recipe;
+import com.africafuture.recipe.service.AbstractService;
 import com.africafuture.recipe.service.dto.RecipeDto;
 import com.africafuture.recipe.service.dto.RecipeSummaryDto;
 import com.africafuture.recipe.service.impl.RecipeServiceImpl;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.function.Supplier;
 
 @Controller
 @RequestMapping("/recipe")
-public class RecipeController {
+public class RecipeController extends AbstractController<Recipe, RecipeDto, RecipeSummaryDto> {
 
     private final RecipeServiceImpl recipeService;
 
@@ -21,45 +20,33 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping
-    @RequestMapping(value = {"/show/{recipeId}"})
-    public String getById(Model model, @PathVariable Long recipeId) {
+    @Override
+    protected AbstractService<Recipe, RecipeDto, RecipeSummaryDto> getEntityService() {
+        return recipeService;
+    }
 
-        model.addAttribute("recipe", recipeService.findById(recipeId));
+    @Override
+    protected String getControllerEntityName() {
+        return "recipe";
+    }
 
+    @Override
+    protected String getDetailViewName() {
         return "recipe/details";
     }
 
-    @GetMapping
-    @RequestMapping(value = {"/creation-form/", "/creation-form"})
-    public String recipeForm(Model model) {
-
-        model.addAttribute("recipe", new RecipeDto());
-
+    @Override
+    protected String getCreateAndUpdateViewName() {
         return "recipe/recipe-form";
     }
 
-    @GetMapping
-    @RequestMapping(value = {"/update-form/{id}"})
-    public String recipeForm(Model model, @PathVariable Long id) {
-
-        model.addAttribute("recipe", recipeService.findById(id));
-
-        return "recipe/recipe-form";
+    @Override
+    protected String getAfterDeletionRedirectionURI() {
+        return "/";
     }
 
-    @PostMapping
-    public String saveOrUpdate(@ModelAttribute RecipeDto recipeDto) {
-        RecipeSummaryDto savedRecipe = recipeService.save(recipeDto);
-
-        return "redirect:show/" + savedRecipe.getId();
-    }
-
-    @GetMapping
-    @RequestMapping("/delete/{recipeId}")
-    public String delete(@PathVariable Long recipeId) {
-        recipeService.delete(recipeId);
-
-        return "redirect:/";
+    @Override
+    protected Supplier<Recipe> getEntitySupplier() {
+        return Recipe::new;
     }
 }

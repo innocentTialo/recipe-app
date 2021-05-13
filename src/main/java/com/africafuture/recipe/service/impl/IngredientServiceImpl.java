@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class IngredientServiceImpl extends AbstractService<Ingredient, IngredientDto, IngredientSummaryDto, Long> {
+public class IngredientServiceImpl extends AbstractService<Ingredient, IngredientDto, IngredientSummaryDto> {
 
     private final IngredientRepository ingredientRepository;
 

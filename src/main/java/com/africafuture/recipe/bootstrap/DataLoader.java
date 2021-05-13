@@ -108,11 +108,7 @@ public class DataLoader implements CommandLineRunner {
                 "\n" +
                 "5. Assemble the tacos:\n" +
                 "Slice the chicken into strips. On each tortilla, place a small handful of arugula. Top with chicken slices, sliced avocado, radishes, tomatoes, and onion slices. Drizzle with the thinned sour cream. Serve with lime wedges.");
-        /*try {
-            spicyGrilledChickenTacos.setImage(ImagesUtils.getBytesOf("classpath:images/spicyGrilledChickenTacos", "png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+
         recipeRepository.save(spicyGrilledChickenTacos);
 
 
@@ -204,11 +200,7 @@ public class DataLoader implements CommandLineRunner {
                 "\n" +
                 "4. Serve:\n" +
                 "Serve immediately, or if making a few hours ahead, place plastic wrap on the surface of the guacamole and press down to cover it and to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.) Refrigerate until ready to serve.");
-        /*try {
-            guacamole.setImage(ImagesUtils.getBytesOf("classpath:images/guacamole", "png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+
         recipeRepository.save(guacamole);
     }
 }

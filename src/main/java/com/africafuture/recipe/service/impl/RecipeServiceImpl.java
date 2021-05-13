@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 
 @Service
-public class RecipeServiceImpl extends AbstractService<Recipe, RecipeDto, RecipeSummaryDto, Long> implements RecipeService {
+public class RecipeServiceImpl extends AbstractService<Recipe, RecipeDto, RecipeSummaryDto> implements RecipeService {
 
     private final RecipeRepository recipeRepository;
 
