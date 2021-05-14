@@ -1,23 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" th:replace="fragments/layout :: layout (~{:: body}, 'home')" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Recipe App</title>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous"
-          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
-
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"
-            th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
 <!-- /*@thymesVar id="recipe" type="com.africafuture.recipe.service.dto.RecipeSummaryDto"*/-->
@@ -53,20 +38,7 @@
                                 <th>Delete</th>
                             </tr>
                             </thead>
-                            <tr th:remove="all">
-                                <td th:text="${recipe.id}">ID</td>
-                                <td th:text="${recipe.name}">Description</td>
-                                <td><a href="#">View</a></td>
-                                <td><a href="#">Update</a></td>
-                                <td><a href="#">Delete</a></td>
-                            </tr>
-                            <tr th:remove="all">
-                                <td th:text="${recipe.id}">12333</td>
-                                <td th:text="${recipe.name}">Tasty Goodnees 2</td>
-                                <td><a href="#">View</a></td>
-                                <td><a href="#">Update</a></td>
-                                <td><a href="#">Delete</a></td>
-                            </tr>
+                            <tbody th:remove="all-but-first">
                             <tr th:each="recipe: ${recipes}">
                                 <td th:text="${recipe.id}">ID</td>
                                 <td th:text="${recipe.name}">Name</td>
@@ -74,13 +46,29 @@
                                 <td><a href="#" th:href="@{'/recipe/update-form/' + ${recipe.id}}">Update</a></td>
                                 <td>
                                     <button class="btn btn-danger btn-xs">
-                                        <a href="#" th:href="@{'/recipe/delete/' + ${recipe.id}}" style="color: white">
+                                        <a href="#" style="color: white"
+                                           th:href="@{'/recipe/delete/{recipeId}(recipeId=${recipe.id})'}">
                                             <span class="glyphicon glyphicon-trash"></span>
                                             Delete
                                         </a>
                                     </button>
                                 </td>
                             </tr>
+                            <tr>
+                                <td th:text="${recipe.id}">ID</td>
+                                <td th:text="${recipe.name}">Description</td>
+                                <td><a href="#">View</a></td>
+                                <td><a href="#">Update</a></td>
+                                <td><a href="#">Delete</a></td>
+                            </tr>
+                            <tr>
+                                <td th:text="${recipe.id}">12333</td>
+                                <td th:text="${recipe.name}">Tasty Goodnees 2</td>
+                                <td><a href="#">View</a></td>
+                                <td><a href="#">Update</a></td>
+                                <td><a href="#">Delete</a></td>
+                            </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
