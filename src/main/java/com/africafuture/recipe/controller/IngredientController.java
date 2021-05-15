@@ -34,12 +34,12 @@ public class IngredientController extends AbstractController<Ingredient, Ingredi
 
     @Override
     protected String getDetailViewName() {
-        return "ingredient/details";
+        return "recipe/ingredient/details";
     }
 
     @Override
     protected String getCreateAndUpdateViewName() {
-        return "ingredient/ingredient-form";
+        return "recipe/ingredient/ingredient-form";
     }
 
     @Override
@@ -53,9 +53,9 @@ public class IngredientController extends AbstractController<Ingredient, Ingredi
     }
 
     @Override
-    public String delete(@PathVariable Long ingredientId) {
-        Long recipeId = ingredientService.findById(ingredientId).getRecipeId();
-        ingredientService.delete(ingredientId);
+    public String delete(@PathVariable Long entityId) {
+        Long recipeId = ingredientService.findById(entityId).getRecipeId();
+        ingredientService.delete(entityId);
         return "redirect:/ingredient/list/" + recipeId;
     }
 

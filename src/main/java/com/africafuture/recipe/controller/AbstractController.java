@@ -66,9 +66,9 @@ public abstract class AbstractController<E extends BaseEntity, D extends EntityD
     }
 
     @GetMapping
-    @RequestMapping("/delete/{recipeId}")
-    public String delete(@PathVariable Long recipeId) {
-        getEntityService().delete(recipeId);
+    @RequestMapping("/delete/{entityId}")
+    public String delete(@PathVariable Long entityId) {
+        getEntityService().delete(entityId);
 
         return "redirect:" + getAfterDeletionRedirectionURI();
     }

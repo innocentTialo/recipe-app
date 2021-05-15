@@ -1,5 +1,7 @@
 package com.africafuture.recipe.controller;
 
+import com.africafuture.recipe.service.AbstractService;
+import com.africafuture.recipe.service.dto.EntitySummaryDto;
 import com.africafuture.recipe.service.dto.IngredientSummaryDto;
 import com.africafuture.recipe.service.impl.IngredientServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,9 +25,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @ExtendWith(MockitoExtension.class)
-class IngredientControllerTest {
+class IngredientControllerTest extends AbstractControllerTest {
 
-    public static final Long ID = 1L;
     @Mock
     IngredientServiceImpl ingredientService;
 
@@ -43,7 +44,8 @@ class IngredientControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(ingredientController).build();
 
         ingredientSummaryDto = new IngredientSummaryDto();
-        ingredientSummaryDto.setId(ID);
+        ingredientSummaryDto.setId(ENTITY_ID);
+        ingredientSummaryDto.setRecipeId(2L);
 
         ingredients = List.of(ingredientSummaryDto);
     }
@@ -52,11 +54,42 @@ class IngredientControllerTest {
     void recipeIngredientList() throws Exception {
         when(ingredientService.findByRecipeId(anyLong())).thenReturn(ingredients);
 
-        mockMvc.perform(get("/ingredient/list/" + ID))
+        mockMvc.perform(get("/ingredient/list/" + ENTITY_ID))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("ingredients", ingredients))
                 .andExpect(view().name("recipe/ingredient/list"));
 
-        verify(ingredientService, times(1)).findByRecipeId(ID);
+        verify(ingredientService, times(1)).findByRecipeId(ENTITY_ID);
+    }
+
+    @Test
+    @Override
+    void delete() throws Exception {
+        when(ingredientService.findById(ENTITY_ID)).thenReturn(ingredientSummaryDto);
+        getMockMVCInstance().perform(get("/" + getEntityController().getControllerEntityName() + "/delete/" + ENTITY_ID))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/ingredient/list/" + 2));
+
+        verify(getEntityService(), times(1)).delete(ENTITY_ID);
+    }
+
+    @Override
+    protected AbstractService getEntityService() {
+        return ingredientService;
+    }
+
+    @Override
+    protected EntitySummaryDto getSummaryDtoInstance() {
+        return ingredientSummaryDto;
+    }
+
+    @Override
+    protected AbstractController getEntityController() {
+        return ingredientController;
+    }
+
+    @Override
+    protected MockMvc getMockMVCInstance() {
+        return mockMvc;
     }
 }

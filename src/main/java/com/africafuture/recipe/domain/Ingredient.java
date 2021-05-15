@@ -37,8 +37,6 @@ public class Ingredient extends BaseEntity {
         return "Ingredient{" +
                 "description='" + description + '\'' +
                 ", amount=" + amount +
-                ", unitOfMeasure=" + unitOfMeasure.getName() +
-                ", recipe=" + recipe.getId() +
                 '}';
     }
 }
