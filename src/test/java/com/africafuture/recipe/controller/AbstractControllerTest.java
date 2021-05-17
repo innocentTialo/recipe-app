@@ -1,6 +1,7 @@
 package com.africafuture.recipe.controller;
 
 import com.africafuture.recipe.service.AbstractService;
+import com.africafuture.recipe.service.dto.EntityDto;
 import com.africafuture.recipe.service.dto.EntitySummaryDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -17,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-public abstract class AbstractControllerTest<C extends AbstractController, X extends AbstractService, S extends EntitySummaryDto> {
+public abstract class AbstractControllerTest<C extends AbstractController, X extends AbstractService, D extends EntityDto, S extends EntitySummaryDto> {
     public static final long ENTITY_ID = 1L;
 
     @Test
@@ -32,15 +33,15 @@ public abstract class AbstractControllerTest<C extends AbstractController, X ext
     }
 
     @Test
-    void recipeCreationForm() throws Exception {
+    void creationForm() throws Exception {
         getMockMVCInstance().perform(get("/" + getEntityController().getControllerEntityName() + "/creation-form"))
                 .andExpect(view().name(getEntityController().getCreateAndUpdateViewName()))
                 .andExpect(model().attributeExists(getEntityController().getControllerEntityName()));
     }
 
     @Test
-    void recipeUpdateForm() throws Exception {
-        when(getEntityService().findById(anyLong())).thenReturn(getSummaryDtoInstance());
+    void updateForm() throws Exception {
+        when(getEntityService().findDtoById(anyLong())).thenReturn(getDtoInstance());
 
         getMockMVCInstance().perform(get("/" + getEntityController().getControllerEntityName() + "/update-form/" + ENTITY_ID))
                 .andExpect(view().name(getEntityController().getCreateAndUpdateViewName()))
@@ -53,7 +54,6 @@ public abstract class AbstractControllerTest<C extends AbstractController, X ext
         getMockMVCInstance().perform(
                 post("/" + getEntityController().getControllerEntityName())
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("id", "")
         )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:show/" + ENTITY_ID));
@@ -71,6 +71,8 @@ public abstract class AbstractControllerTest<C extends AbstractController, X ext
     protected abstract X getEntityService();
 
     protected abstract S getSummaryDtoInstance();
+
+    protected abstract D getDtoInstance();
 
     protected abstract C getEntityController();
 

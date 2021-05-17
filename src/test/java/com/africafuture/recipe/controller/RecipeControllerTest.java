@@ -1,7 +1,9 @@
 package com.africafuture.recipe.controller;
 
 import com.africafuture.recipe.service.AbstractService;
+import com.africafuture.recipe.service.dto.EntityDto;
 import com.africafuture.recipe.service.dto.EntitySummaryDto;
+import com.africafuture.recipe.service.dto.RecipeDto;
 import com.africafuture.recipe.service.dto.RecipeSummaryDto;
 import com.africafuture.recipe.service.impl.RecipeServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,10 +24,15 @@ class RecipeControllerTest extends AbstractControllerTest {
 
     MockMvc mockMvc;
 
+    RecipeDto recipeDto;
+
     RecipeSummaryDto recipeSummaryDto;
 
     @BeforeEach
     void setUp() {
+        recipeDto = new RecipeDto();
+        recipeDto.setId(ENTITY_ID);
+
         recipeSummaryDto = new RecipeSummaryDto();
         recipeSummaryDto.setId(ENTITY_ID);
 
@@ -40,6 +47,11 @@ class RecipeControllerTest extends AbstractControllerTest {
     @Override
     protected EntitySummaryDto getSummaryDtoInstance() {
         return recipeSummaryDto;
+    }
+
+    @Override
+    protected EntityDto getDtoInstance() {
+        return recipeDto;
     }
 
     @Override

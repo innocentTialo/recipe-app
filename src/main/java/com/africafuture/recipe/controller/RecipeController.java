@@ -5,6 +5,7 @@ import com.africafuture.recipe.service.AbstractService;
 import com.africafuture.recipe.service.dto.RecipeDto;
 import com.africafuture.recipe.service.dto.RecipeSummaryDto;
 import com.africafuture.recipe.service.impl.RecipeServiceImpl;
+import com.africafuture.recipe.service.mapper.RecipeMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,7 +17,7 @@ public class RecipeController extends AbstractController<Recipe, RecipeDto, Reci
 
     private final RecipeServiceImpl recipeService;
 
-    public RecipeController(RecipeServiceImpl recipeService) {
+    public RecipeController(RecipeServiceImpl recipeService, RecipeMapper recipeMapper) {
         this.recipeService = recipeService;
     }
 
@@ -46,7 +47,7 @@ public class RecipeController extends AbstractController<Recipe, RecipeDto, Reci
     }
 
     @Override
-    protected Supplier<Recipe> getEntitySupplier() {
-        return Recipe::new;
+    protected Supplier<RecipeDto> getEntityDtoSupplier() {
+        return RecipeDto::new;
     }
 }

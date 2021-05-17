@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{fragments/layout :: layout(~{::body}, 'home')}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <!-- /*@thymesVar id="ingredient" type="com.africafuture.recipe.service.dto.IngredientDto"*/-->
+            <!-- /*@thymesVar id="recipeId" type="java.lang.Long"*/-->
+            <!-- /*@thymesVar id="unitOfMeasures" type="java.util.Set<com.africafuture.recipe.service.dto.UnitOfMeasureSummaryDto>"*/-->
+            <form method="post" th:action="@{'/ingredient'} " th:object="${ingredient}">
+                <input th:field="*{id}" type="hidden"/>
+                <input name="recipeId" th:field="${ingredient.recipeId}" th:value="${recipeId}" type="hidden"/>
+                <div class="pannel-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h1 class="panel-title">Edit Ingredient Information</h1>
+                        </div>
+                        <div class="panel-body">
+
+
+                            <div class="row">
+                                <div class="col-md-3 form-group">
+                                    <label>Description:</label>
+                                    <input class="form-control" th:field="*{description}" type="text"/>
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <label>Amount:</label>
+                                    <input class="form-control" th:field="*{amount}" type="number"/>
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <label>UOM:</label>
+                                    <select class="form-control" name="unitOfMeasureId">
+                                        <option th:each="unitOfMeasure : ${unitOfMeasures}"
+                                                th:selected="${unitOfMeasure.id.equals(ingredient.unitOfMeasureId)}"
+                                                th:text="${unitOfMeasure.name}"
+                                                th:value="${unitOfMeasure.id}">Unit Of Measure
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

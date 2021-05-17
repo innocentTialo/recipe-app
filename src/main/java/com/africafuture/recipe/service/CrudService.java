@@ -11,6 +11,8 @@ public interface CrudService<T, D extends EntityDto, S extends EntitySummaryDto,
 
     S findById(ID id);
 
+    D findDtoById(ID id);
+
     S save(D dto);
 
     void delete(ID id);

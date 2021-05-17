@@ -17,8 +17,18 @@ public abstract class IngredientMapper implements EntityMapper<Ingredient, Ingre
     EntityFinder entityFinder;
 
     @Override
+    @Mapping(target = "recipe", expression = "java(entityFinder.findRecipeById(dto.getRecipeId()))")
+    @Mapping(target = "unitOfMeasure", expression = "java(entityFinder.findUnitOfMeasureById(dto.getUnitOfMeasureId()))")
+    public abstract Ingredient toEntity(IngredientDto dto);
+
+    @Override
     @Mapping(target = "recipeId", source = "recipe.id")
     public abstract IngredientSummaryDto toSummaryDto(Ingredient entity);
+
+    @Override
+    @Mapping(target = "recipeId", source = "recipe.id")
+    @Mapping(target = "unitOfMeasureId", source = "unitOfMeasure.id")
+    public abstract IngredientDto toDto(Ingredient entity);
 
     @Component
     class IngredientFactory {

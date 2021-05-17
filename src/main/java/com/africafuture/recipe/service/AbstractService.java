@@ -26,6 +26,11 @@ public abstract class AbstractService<T extends BaseEntity, D extends EntityDto,
     }
 
     @Override
+    public D findDtoById(Long id) {
+        return getEntityMapper().toDto(getRepository().findById(id).orElseThrow(EntityNotFoundException::new));
+    }
+
+    @Override
     public S save(D dto) {
         T entity = getEntityMapper().toEntity(dto);
         onCreateBeforeSave(dto, entity);
